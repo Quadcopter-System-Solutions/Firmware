@@ -1,0 +1,80 @@
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>534</x><y>40</y><w>340</w><h>860</h></coordinates><panel_attributes>main
+--
+Sensor_i2c sensors
+Motors motors
+UltraSonic ultrasonic
+--
+Tasks
+-- update_sensors()
+-- communicate_pi()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>24</x><y>40</y><w>480</w><h>340</h></coordinates><panel_attributes>Sensor_i2c
+--
+Altimeter altimeter
+Gyroscope gyroscope
+--
+read(address): int
+write(address, message): int
+read_altimeter(): int
+read_gyroscope(): int[]
+write_altimeter(message): boolean
+write_gyroscope(message): boolean
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>274</x><y>220</y><w>210</w><h>90</h></coordinates><panel_attributes>Gyroscope
+--
+address: int[]
+accelerometer: int[]
+gyroscope: int[]
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>44</x><y>220</y><w>210</w><h>140</h></coordinates><panel_attributes>Altimeter
+--
+address: int[]
+barometric_pressure: int
+
+initial_data: int[]
+altitude: int -&gt; calculated</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>0</y><w>900</w><h>920</h></coordinates><panel_attributes>STM
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>934</x><y>0</y><w>910</w><h>730</h></coordinates><panel_attributes>Pi
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1874</x><y>0</y><w>910</w><h>730</h></coordinates><panel_attributes>Controller
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>24</x><y>500</y><w>480</w><h>400</h></coordinates><panel_attributes>Motors
+--
+Motor l1
+Motor l2
+Motor r1
+Motor r2
+
+Motor camera_motor
+Motor arm_motor
+--
+update_motor_l1(power): boolean
+update_motor_l2(power): boolean
+update_motor_r1(power): boolean
+update_motor_r2(power): boolean
+update_motors(power1, power2, power3, power4): boolean
+update_camera_motor(power): boolean
+update_arm_motor(power): boolean
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>44</x><y>770</y><w>210</w><h>110</h></coordinates><panel_attributes>Motor
+--
+pin: int
+power: int
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>24</x><y>390</y><w>480</w><h>100</h></coordinates><panel_attributes>UltraSonic
+--
+address: int[]
+distance: int
+--
+read(address)
+write(address, message): int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1014</x><y>850</y><w>130</w><h>60</h></coordinates><panel_attributes>STM</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1354</x><y>850</y><w>130</w><h>60</h></coordinates><panel_attributes>Pi</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1157</x><y>830</y><w>190</w><h>50</h></coordinates><panel_attributes>
+a2 read(2)
+lt=&lt;&lt;-</panel_attributes><additional_attributes>10;20;170;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1157</x><y>870</y><w>200</w><h>50</h></coordinates><panel_attributes>
+a2
+lt=&lt;&lt;-</panel_attributes><additional_attributes>180;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1157</x><y>890</y><w>200</w><h>50</h></coordinates><panel_attributes>
+data
+lt=&lt;&lt;-</panel_attributes><additional_attributes>180;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>984</x><y>70</y><w>360</w><h>140</h></coordinates><panel_attributes>main
+--
+MultiThread multi_thread
+--
+Responsibilities
+-- Runs the flask server between the Pi and the controller
+-- Serial communication betwen the Pi and STM</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>984</x><y>230</y><w>360</w><h>140</h></coordinates><panel_attributes>Flask
+--
+Endpoints
+-- change_elevation(int): 
+-- rotate(int):
+-- </panel_attributes><additional_attributes></additional_attributes></element></diagram>

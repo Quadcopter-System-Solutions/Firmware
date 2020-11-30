@@ -1,0 +1,1 @@
+To open `.uxf` files, install VSCode and install the `UMLet` plugin by `The UMLet Team`
