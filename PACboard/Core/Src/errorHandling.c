@@ -23,7 +23,8 @@ void TASK_nucleoRED(void)
 
 	for(;;)
 	{
-		HAL_GPIO_TogglePin(GPIOB, U14);
+		HAL_GPIO_TogglePin(GPIOB, 14);
+	}
 }
 
 
