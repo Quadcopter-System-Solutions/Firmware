@@ -80,8 +80,8 @@ int main(void)
   HAL_Init();
 
   /* Configure the system clock to 100 MHz */
-  SystemClock_Config();
-  
+
+  __HAL_RCC_GPIOB_CLK_ENABLE();
   /* -1- Enable GPIO Clock (to be able to program the configuration registers) */
 
 
@@ -137,7 +137,7 @@ static void SystemClock_Config(void)
 
   /* Enable Power Control clock */
   __HAL_RCC_PWR_CLK_ENABLE();
-  __HAL_RCC_GPIOB_CLK_ENABLE();
+
 
   /* The voltage scaling allows optimizing the power consumption when the device is 
      clocked below the maximum system frequency, to update the voltage scaling value 

@@ -1,30 +1,16 @@
 #include "errorHandling.h"
 
-
+static GPIO_InitTypeDef  GPIO_InitStructRED;
+static GPIO_InitTypeDef  GPIO_InitStructBLU;
 
 void TASK_errorHandler(void)
 {
-	for(;;)
-	{
 
-	}
 }
 
 void TASK_nucleoRED(void)
 {
-
-	GPIO_InitTypeDef  RED_LED = {GPIO_PIN_14,
-			 	 	 	 	 	GPIO_MODE_OUTPUT_PP,
-								GPIO_PULLUP,
-								GPIO_SPEED_FREQ_VERY_HIGH,
-								0};
-
-	HAL_GPIO_Init(GPIOB, &RED_LED);
-
-	for(;;)
-	{
-		HAL_GPIO_TogglePin(GPIOB, 14);
-	}
+		GPIOB->ODR ^= GPIO_PIN_14;
 }
 
 
@@ -32,23 +18,25 @@ void TASK_nucleoRED(void)
 
 void TASK_nucleoBLU(void)
 {
+		GPIOB->ODR ^= GPIO_PIN_7;
+}
 
 
-	GPIO_InitTypeDef  BLU_LED = {GPIO_PIN_7,
-			 	 	 	 	 	GPIO_MODE_OUTPUT_PP,
-								GPIO_PULLUP,
-								GPIO_SPEED_FREQ_VERY_HIGH,
-								0};
+void errorInit(void)
+{
+	GPIO_InitStructRED.Mode  = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStructRED.Pull  = GPIO_PULLUP;
+	GPIO_InitStructRED.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+	GPIO_InitStructRED.Pin = GPIO_PIN_7;
 
-	HAL_GPIO_Init(GPIOB, &BLU_LED);
+	HAL_GPIO_Init(GPIOB, &GPIO_InitStructRED);
 
-	for(;;)
-	{
-		HAL_GPIO_WritePin((GPIO_TypeDef*) GPIOB, (uint16_t) 7, (GPIO_PinState) GPIO_PIN_SET);
-		vTaskDelay(250);
-		HAL_GPIO_WritePin((GPIO_TypeDef*) GPIOB, (uint16_t) 7, (GPIO_PinState) GPIO_PIN_RESET);
-		vTaskDelay(250);
-	}
+	GPIO_InitStructBLU.Mode  = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStructBLU.Pull  = GPIO_PULLUP;
+	GPIO_InitStructBLU.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+	GPIO_InitStructBLU.Pin = GPIO_PIN_14;
+
+	HAL_GPIO_Init(GPIOB, &GPIO_InitStructBLU);
 }
 
 

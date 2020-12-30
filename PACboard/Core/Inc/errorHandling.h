@@ -11,6 +11,7 @@ uint16_t errorMessage;
 void TASK_errorHandler(void);
 void TASK_nucleoRED(void);
 void TASK_nucleoBLU(void);
+void errorInit(void);
 
 
 #endif

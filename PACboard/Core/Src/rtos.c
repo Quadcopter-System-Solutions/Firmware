@@ -10,19 +10,31 @@ static void PRIVATE_errorHandler(void);
 static void PRIVATE_nucleoRED(void);
 static void PRIVATE_nucleoBLU(void);
 
-void PRIVATE_errorHandler()
+static void PRIVATE_errorHandler()
 {
-	TASK_errorHandler();
+	while(1)
+	{
+		TASK_errorHandler();
+		vTaskDelay(500);
+	}
 }
 
-void PRIVATE_nucleoRED()
+static void PRIVATE_nucleoRED()
 {
-	TASK_nucleoRED();
+	while(1)
+	{
+		TASK_nucleoRED();
+		vTaskDelay(500);
+	}
 }
 
-void PRIVATE_nucleoBLU()
+static void PRIVATE_nucleoBLU()
 {
-	TASK_nucleoBLU();
+	while(1)
+	{
+		TASK_nucleoBLU();
+		vTaskDelay(250);
+	}
 }
 
 void RTOS_init()
@@ -35,7 +47,7 @@ void RTOS_init()
 
 	ret = xTaskCreate((TaskFunction_t)PRIVATE_errorHandler,
 				(const char * const)"errorHandler",
-				configMINIMAL_STACK_SIZE,
+				configMINIMAL_STACK_SIZE*2,
 				NULL,
 				tskIDLE_PRIORITY + 1U,
 				&errorHandler_th);
@@ -51,9 +63,9 @@ void RTOS_init()
 
 	ret = xTaskCreate((TaskFunction_t)PRIVATE_nucleoRED,
 				(const char * const)"nucleoRED",
-				configMINIMAL_STACK_SIZE,
+				configMINIMAL_STACK_SIZE*2,
 				NULL,
-				tskIDLE_PRIORITY + 1U,
+				tskIDLE_PRIORITY + 2U,
 				&nucleoRED_th);
 
 		if(ret != pdPASS)
@@ -67,9 +79,9 @@ void RTOS_init()
 
 	xTaskCreate((TaskFunction_t)PRIVATE_nucleoBLU,
 				(const char * const)"nucleoBLUE",
-				configMINIMAL_STACK_SIZE,
+				configMINIMAL_STACK_SIZE*2,
 				NULL,
-				tskIDLE_PRIORITY + 1U,
+				tskIDLE_PRIORITY + 3U,
 				&nucleoBLUE_th);
 
 		if(ret != pdPASS)
@@ -79,5 +91,7 @@ void RTOS_init()
 
 
 	vTaskStartScheduler();
+
+	for(;;);
 
 }
