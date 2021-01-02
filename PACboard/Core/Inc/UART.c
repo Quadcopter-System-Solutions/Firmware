@@ -105,7 +105,7 @@ void TASK_UARTHandler(void)
 
 	if(HAL_UART_Transmit_DMA(&uart6, (uint8_t*)txBuffer, TXBUFFERSIZE) != HAL_OK)
 	{
-		GPIOB->ODR ^= GPIO_PIN_14;
+		errorMessage = 0x0003; //uart failure
 	}
 }
 

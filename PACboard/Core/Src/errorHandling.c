@@ -10,7 +10,7 @@ void TASK_errorHandler(void)
 
 void TASK_nucleoRED(void)
 {
-		//GPIOB->ODR ^= GPIO_PIN_14;
+		GPIOB->ODR ^= GPIO_PIN_14;
 }
 
 
@@ -18,7 +18,7 @@ void TASK_nucleoRED(void)
 
 void TASK_nucleoBLU(void)
 {
-		//GPIOB->ODR ^= GPIO_PIN_7;
+		GPIOB->ODR ^= GPIO_PIN_7;
 }
 
 
