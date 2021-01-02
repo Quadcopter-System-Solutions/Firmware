@@ -64,7 +64,7 @@ HAL_DMA_Init(&dma_rx);
 //UART
 uart6.Instance        = USART6;
 
-uart6.Init.BaudRate   = 9600;
+uart6.Init.BaudRate   = 115200;
 uart6.Init.WordLength = UART_WORDLENGTH_8B;
 uart6.Init.StopBits   = UART_STOPBITS_1;
 uart6.Init.Parity     = UART_PARITY_NONE;

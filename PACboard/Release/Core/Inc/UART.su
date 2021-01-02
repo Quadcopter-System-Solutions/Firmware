@@ -1,0 +1,5 @@
+UART.c:11:6:UART_Init	72	static
+UART.c:97:6:TASK_UARTHandler	8	static
+UART.c:115:6:DMA2_Stream1_IRQHandler	0	static
+UART.c:119:6:DMA2_Stream7_IRQHandler	0	static
+UART.c:123:6:USART6_IRQHandler	0	static
