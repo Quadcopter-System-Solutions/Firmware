@@ -1,6 +1,7 @@
 
 #include "FreeRTOS.h"
 #include "rtos.h"
+#include "UART.h"
 #include "task.h"
 #include "errorHandling.h"
 #include "stm32f4xx_hal.h"
@@ -9,6 +10,7 @@
 static void PRIVATE_errorHandler(void);
 static void PRIVATE_nucleoRED(void);
 static void PRIVATE_nucleoBLU(void);
+static void PRIVATE_UARTHandler(void);
 
 static void PRIVATE_errorHandler()
 {
@@ -36,6 +38,18 @@ static void PRIVATE_nucleoBLU()
 		vTaskDelay(250);
 	}
 }
+
+static void PRIVATE_UARTHandler()
+{
+	while(1)
+	{
+		TASK_UARTHandler();
+		vTaskDelay(1000);
+	}
+}
+
+
+
 
 void RTOS_init()
 {
@@ -65,7 +79,7 @@ void RTOS_init()
 				(const char * const)"nucleoRED",
 				configMINIMAL_STACK_SIZE*2,
 				NULL,
-				tskIDLE_PRIORITY + 2U,
+				tskIDLE_PRIORITY + 3U,
 				&nucleoRED_th);
 
 		if(ret != pdPASS)
@@ -89,6 +103,21 @@ void RTOS_init()
 			errorMessage |= 0x00000001; //RTOS init error
 		}
 
+
+
+	TaskHandle_t UARTHandler_th;
+
+	ret = xTaskCreate((TaskFunction_t)PRIVATE_UARTHandler,
+				(const char * const)"UARTHandler",
+				configMINIMAL_STACK_SIZE*2,
+				NULL,
+				tskIDLE_PRIORITY + 5U,
+				&UARTHandler_th);
+
+		if(ret != pdPASS)
+		{
+			errorMessage |= 0x0001; //RTOS init error
+		}
 
 	vTaskStartScheduler();
 

@@ -1,3 +1,4 @@
-errorHandling.c:5:6:TASK_errorHandler	4	static
-errorHandling.c:13:6:TASK_nucleoRED	40	static
-errorHandling.c:33:6:TASK_nucleoBLU	40	static
+errorHandling.c:6:6:TASK_errorHandler	4	static
+errorHandling.c:11:6:TASK_nucleoRED	4	static
+errorHandling.c:19:6:TASK_nucleoBLU	4	static
+errorHandling.c:25:6:errorInit	8	static
