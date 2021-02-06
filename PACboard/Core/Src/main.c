@@ -11,6 +11,7 @@ int main(void)
 
   HAL_Init();
   SystemClock_Config();
+
   errorInit();
   UART_Init();
   RTOS_init();

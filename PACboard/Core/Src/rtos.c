@@ -44,7 +44,7 @@ static void PRIVATE_UARTHandler()
 	while(1)
 	{
 		TASK_UARTHandler();
-		vTaskDelay(1000);
+		vTaskDelay(25);
 	}
 }
 
