@@ -10,6 +10,7 @@
 static void PRIVATE_errorHandler(void);
 static void PRIVATE_nucleoRED(void);
 static void PRIVATE_nucleoBLU(void);
+static void PRIVATE_nucleoGRN(void);
 static void PRIVATE_UARTHandler(void);
 
 static void PRIVATE_errorHandler()
@@ -36,6 +37,15 @@ static void PRIVATE_nucleoBLU()
 	{
 		TASK_nucleoBLU();
 		vTaskDelay(250);
+	}
+}
+
+static void PRIVATE_nucleoGRN()
+{
+	while(1)
+	{
+		TASK_nucleoGRN();
+		vTaskDelay(100);
 	}
 }
 
@@ -103,7 +113,19 @@ void RTOS_init()
 			errorMessage |= 0x00000001; //RTOS init error
 		}
 
+	TaskHandle_t nucleoGRN_th;
 
+	xTaskCreate((TaskFunction_t)PRIVATE_nucleoGRN,
+				(const char * const)"nucleoGREEN",
+				configMINIMAL_STACK_SIZE*2,
+				NULL,
+				tskIDLE_PRIORITY + 3U,
+				&nucleoGRN_th);
+
+		if(ret != pdPASS)
+		{
+			errorMessage |= 0x00000001; //RTOS init error
+		}
 
 	TaskHandle_t UARTHandler_th;
 
