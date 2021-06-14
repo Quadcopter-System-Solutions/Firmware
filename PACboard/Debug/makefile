@@ -1,5 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
+# Toolchain: GNU Tools for STM32 (9-2020-q2-update)
 ################################################################################
 
 -include ../makefile.init
@@ -10,11 +11,11 @@ RM := rm -rf
 -include sources.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/subdir.mk
+-include Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/subdir.mk
 -include Drivers/STM32F4xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
--include Core/Inc/subdir.mk
 -include subdir.mk
 -include objects.mk
 
@@ -31,6 +32,12 @@ endif
 endif
 
 -include ../makefile.defs
+
+OPTIONAL_TOOL_DEPS := \
+$(wildcard ../makefile.defs) \
+$(wildcard ../makefile.init) \
+$(wildcard ../makefile.targets) \
+
 
 BUILD_ARTIFACT_NAME := PACboard
 BUILD_ARTIFACT_EXTENSION := elf
@@ -58,22 +65,22 @@ all: main-build
 main-build: PACboard.elf secondary-outputs
 
 # Tool invocations
-PACboard.elf: $(OBJS) $(USER_OBJS) C:\Quadcopter\ System\ Solutions\Firmware\PACboard\STM32F413ZHTX_FLASH.ld
-	arm-none-eabi-gcc -o "PACboard.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Quadcopter System Solutions\Firmware\PACboard\STM32F413ZHTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PACboard.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+PACboard.elf: $(OBJS) $(USER_OBJS) C:\Users\carte\projects\qs\Firmware\PACboard\STM32F413ZHTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "PACboard.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\carte\projects\qs\Firmware\PACboard\STM32F413ZHTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PACboard.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-default.size.stdout: $(EXECUTABLES)
+default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-size  $(EXECUTABLES)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-PACboard.list: $(EXECUTABLES)
+PACboard.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "PACboard.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-PACboard.bin: $(EXECUTABLES)
+PACboard.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "PACboard.bin"
 	@echo 'Finished building: $@'
 	@echo ' '

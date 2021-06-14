@@ -98,10 +98,11 @@ void TASK_UARTHandler(void)
 {
 	HAL_UART_Receive_DMA(&uart6, rxBuffer, RXBUFFERSIZE);
 
-	for(int i = 0; i < RXBUFFERSIZE; i++)
-	{
-		txBuffer[i]=rxBuffer[i];
-	}
+//For UART response testing
+//	for(int i = 0; i < RXBUFFERSIZE; i++)
+//	{
+//		txBuffer[i]=rxBuffer[i];
+//	}
 
 	if(HAL_UART_Transmit_DMA(&uart6, (uint8_t*)txBuffer, TXBUFFERSIZE) != HAL_OK)
 	{

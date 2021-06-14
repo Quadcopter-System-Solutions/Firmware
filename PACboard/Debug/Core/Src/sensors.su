@@ -1,0 +1,2 @@
+sensors.c:12:6:sensorsInit	120	static
+sensors.c:48:6:TASK_SensorHandler	8	static

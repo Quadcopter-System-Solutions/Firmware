@@ -7,6 +7,7 @@
 #include "stm32f4xx_hal.h"
 
 
+
 static void PRIVATE_errorHandler(void);
 static void PRIVATE_nucleoRED(void);
 static void PRIVATE_nucleoBLU(void);
@@ -58,6 +59,14 @@ static void PRIVATE_UARTHandler()
 	}
 }
 
+static void PRIVATE_SensorHandler()
+{
+	while(1)
+	{
+		TASK_SensorHandler();
+		vTaskDelay(25);
+	}
+}
 
 
 
@@ -127,6 +136,7 @@ void RTOS_init()
 			errorMessage |= 0x00000001; //RTOS init error
 		}
 
+
 	TaskHandle_t UARTHandler_th;
 
 	ret = xTaskCreate((TaskFunction_t)PRIVATE_UARTHandler,
@@ -140,6 +150,22 @@ void RTOS_init()
 		{
 			errorMessage |= 0x0001; //RTOS init error
 		}
+
+
+	TaskHandle_t SensorHandler_th;
+
+	ret = xTaskCreate((TaskFunction_t)PRIVATE_SensorHandler,
+				(const char * const)"SensorHandler",
+				configMINIMAL_STACK_SIZE*2,
+				NULL,
+				tskIDLE_PRIORITY + 5U,
+				&SensorHandler_th);
+
+		if(ret != pdPASS)
+		{
+			errorMessage |= 0x0001; //RTOS init error
+		}
+
 
 	vTaskStartScheduler();
 

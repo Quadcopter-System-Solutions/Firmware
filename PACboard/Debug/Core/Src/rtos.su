@@ -1,6 +1,7 @@
-rtos.c:16:13:PRIVATE_errorHandler	8	static
-rtos.c:25:13:PRIVATE_nucleoRED	8	static
-rtos.c:34:13:PRIVATE_nucleoBLU	8	static
-rtos.c:43:13:PRIVATE_nucleoGRN	8	static
-rtos.c:52:13:PRIVATE_UARTHandler	8	static
-rtos.c:64:6:RTOS_init	40	static
+rtos.c:17:13:PRIVATE_errorHandler	8	static
+rtos.c:26:13:PRIVATE_nucleoRED	8	static
+rtos.c:35:13:PRIVATE_nucleoBLU	8	static
+rtos.c:44:13:PRIVATE_nucleoGRN	8	static
+rtos.c:53:13:PRIVATE_UARTHandler	8	static
+rtos.c:62:13:PRIVATE_SensorHandler	8	static
+rtos.c:73:6:RTOS_init	48	static

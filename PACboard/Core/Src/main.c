@@ -14,6 +14,8 @@ int main(void)
 
   errorInit();
   UART_Init();
+  sensorsInit();
+
   RTOS_init();
 
   for(;;);
